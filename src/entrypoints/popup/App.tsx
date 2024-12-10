@@ -182,7 +182,7 @@ function Popup() {
             <div className="sticky top-0 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-500">
               {category}
             </div>
-            <div>
+            <div className="grid grid-cols-2 divide-x">
               {items.map(resource => (
                 <ResourceItem key={resource.name} resource={resource} />
               ))}
