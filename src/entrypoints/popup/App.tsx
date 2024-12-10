@@ -11,156 +11,159 @@ import {
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Search } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { SiGithub } from 'react-icons/si'
 
-function useActiveTabUrl(): string {
-  const [url, setUrl] = useState<string>('')
-  useEffect(() => {
-    const getActiveTabUrl = async () => {
-      const [tab] = await browser.tabs.query({ active: true, currentWindow: true })
-      if (tab?.url) {
-        let formattedUrl = tab.url
-        if (formattedUrl.endsWith('/')) {
-          formattedUrl = formattedUrl.slice(0, -1)
-        }
-        setUrl(formattedUrl)
-      }
-    }
-    getActiveTabUrl()
-  }, [])
-  return url
-}
-
-interface Tool {
-  applicableSites?: string[]
+interface Resource {
+  category?: string
   description?: string
   name: string
   url: string
 }
 
-const tools: Tool[] = [
-  // General - Sorted by Frequency
+const resources: Resource[] = [
+  // Frontend Frameworks & Tools
   {
-    description: 'Download videos from YouTube, Twitter, Facebook, etc.',
-    name: 'SaveFrom.net',
-    url: 'https://savefrom.net',
+    category: 'Frontend',
+    description: 'A utility-first CSS framework',
+    name: 'Tailwind CSS',
+    url: 'https://tailwindcss.com/docs',
   },
   {
-    description: 'Find and download subtitles for movies and TV shows',
-    name: 'SubtitleCat',
-    url: 'https://www.subtitlecat.com',
+    category: 'Frontend',
+    description: 'React components library',
+    name: 'shadcn/ui',
+    url: 'https://ui.shadcn.com/docs/components/form',
   },
   {
-    description: 'Compress images with ease',
-    name: 'Squoosh',
-    url: 'https://squoosh.app',
+    category: 'Frontend',
+    description: 'Animation library for React',
+    name: 'Framer Motion',
+    url: 'https://motion.dev/docs/react-quick-start',
+  },
+
+  // Development Tools
+  {
+    category: 'Development',
+    description: 'Next-gen browser extension framework',
+    name: 'WXT',
+    url: 'https://wxt.dev/guide/essentials/entrypoints.html',
   },
   {
-    description: 'Edit, convert, e-sign and manage PDF files online',
-    name: 'Sejda PDF',
-    url: 'https://www.sejda.com',
+    category: 'Development',
+    name: 'WXT Examples',
+    url: 'https://wxt.dev/examples.html',
   },
   {
-    description: 'Every tool you could want to edit images in bulk',
-    name: 'iLoveIMG',
-    url: 'https://www.iloveimg.com',
+    category: 'Development',
+    description: 'Electron build tool',
+    name: 'Electron Vite',
+    url: 'https://electron-vite.org/guide/',
   },
   {
-    name: 'Regexr',
-    url: 'https://regexr.com',
+    category: 'Development',
+    description: 'Next Generation Frontend Tooling',
+    name: 'Vite',
+    url: 'https://vite.dev/guide/',
   },
   {
-    description: 'Cut, edit and merge audio files online',
-    name: 'MP3Cut',
-    url: 'https://mp3cut.net',
+    category: 'Development',
+    description: 'Testing Framework',
+    name: 'Vitest',
+    url: 'https://vitest.dev/guide/',
+  },
+
+  // Libraries & Utils
+  {
+    category: 'Libraries',
+    description: 'TypeScript-first schema validation',
+    name: 'Zod',
+    url: 'https://zod.dev/?id=basic-usage',
   },
   {
-    name: 'SQLite Viewer',
-    url: 'https://sqliteviewer.app',
+    category: 'Libraries',
+    description: 'React form validation library',
+    name: 'React Hook Form',
+    url: 'https://react-hook-form.com/get-started',
   },
   {
-    name: 'Favicon Extractor',
-    url: 'https://www.faviconextractor.com',
+    category: 'Libraries',
+    description: 'Universal Router for React',
+    name: 'TanStack Router',
+    url: 'https://tanstack.com/router/latest/docs/framework/react/quick-start',
   },
   {
-    description: 'Identify fonts from images',
-    name: 'WhatTheFont',
-    url: 'https://www.myfonts.com/pages/whatthefont',
+    category: 'Libraries',
+    description: 'Powerful async state management',
+    name: 'TanStack Query',
+    url: 'https://tanstack.com/query/latest/docs/framework/react/quick-start',
   },
   {
-    description: 'Create avatars for your profiles, designs, websites or apps. Piece by piece or based on a seed.',
-    name: 'DiceBear',
-    url: 'https://editor.dicebear.com',
+    category: 'Libraries',
+    description: 'Fetch library for JavaScript',
+    name: 'oFetch',
+    url: 'https://github.com/unjs/ofetch/blob/main/README.md',
+  },
+
+  // Learning Resources
+  {
+    category: 'Learning',
+    description: 'Data structures and algorithms',
+    name: 'LabulaDong Algo',
+    url: 'https://labuladong.online/algo/intro/data-structure-basic/',
   },
   {
-    description: 'Visual encyclopedia of exercises, muscles, and stretches',
-    name: 'MuscleWiki',
-    url: 'https://musclewiki.com',
+    category: 'Learning',
+    description: 'Deep dive into JavaScript',
+    name: 'You Don\'t Know JS',
+    url: 'https://github.com/getify/You-Dont-Know-JS#titles',
   },
   {
-    description: 'Quick reference for Tailwind CSS classes and utilities',
-    name: 'Tailwind CSS Cheatsheet',
-    url: 'https://umeshmk.github.io/Tailwindcss-cheatsheet/',
+    category: 'Learning',
+    description: 'Modern JavaScript Guide',
+    name: 'Eloquent JavaScript',
+    url: 'https://eloquentjavascript.net/',
+  },
+
+  // Best Practices
+  {
+    category: 'Best Practices',
+    description: 'Project organization guidelines',
+    name: 'Project Guidelines',
+    url: 'https://github.com/elsewhencode/project-guidelines#project-guidelines--',
   },
   {
-    description: 'Download high-quality movies',
-    name: 'YTS Movies',
-    url: 'https://yts.mx',
+    category: 'Best Practices',
+    description: 'Modern application development principles',
+    name: '12 Factor App',
+    url: 'https://12factor.net/',
   },
   {
-    description: 'Stream torrents directly in your browser',
-    name: 'Webtor',
-    url: 'https://webtor.io',
-  },
-  // Site-specific - Sorted by Frequency
-  {
-    applicableSites: ['youtube.com'],
-    name: 'YouTube Downloader',
-    url: 'https://yt1s.com',
-  },
-  {
-    applicableSites: ['youtube.com'],
-    name: 'Get YouTube Thumbnail',
-    url: 'https://youtube-thumbnail-grabber.com',
-  },
-  {
-    applicableSites: ['github.com'],
-    name: 'Repo to Text',
-    url: 'https://repo2txt.simplebasedomain.com',
-  },
-  {
-    applicableSites: ['ui.shadcn.com'],
-    description: 'Customize shadcn/ui themes',
-    name: 'shadcn/ui customizer',
-    url: 'https://customizer.railly.dev',
-  },
-  {
-    applicableSites: ['framer.com/motion'],
-    name: 'Framer Ground',
-    url: 'https://ground.bossadizenith.me',
+    category: 'Best Practices',
+    description: 'System design interview preparation',
+    name: 'System Design Primer',
+    url: 'https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions',
   },
 ]
 
-function ToolItem({ tool }: { tool: Tool }) {
+// Rename ToolItem to ResourceItem and update its props
+function ResourceItem({ resource }: { resource: Resource }) {
   return (
     <div
       className="group relative cursor-pointer rounded-lg border p-4 transition-all hover:border-blue-500 hover:shadow-md"
-      onClick={() => window.open(tool.url, '_blank')}
+      onClick={() => window.open(resource.url, '_blank')}
     >
       <div className="block text-lg font-medium text-blue-600 group-hover:text-blue-700">
-        {tool.name}
+        {resource.name}
       </div>
-      {tool.description && (
-        <p className="mt-2 line-clamp-2 text-sm text-gray-600">{tool.description}</p>
+      {resource.description && (
+        <p className="mt-2 line-clamp-2 text-sm text-gray-600">{resource.description}</p>
       )}
-      {tool.applicableSites && (
+      {resource.category && (
         <div className="mt-2 flex flex-wrap gap-1">
-          {tool.applicableSites.map(site => (
-            <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-700" key={site}>
-              {site}
-            </span>
-          ))}
+          <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-700">
+            {resource.category}
+          </span>
         </div>
       )}
     </div>
@@ -169,30 +172,28 @@ function ToolItem({ tool }: { tool: Tool }) {
 
 function Popup() {
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const url = useActiveTabUrl()
 
-  const { matchedTools, unmatchedTools } = useMemo(() => {
-    const filtered = tools.filter((tool) => {
-      const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase())
-        || (tool.description && tool.description.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredResources = useMemo(() => {
+    return resources.filter((resource) => {
+      const matchesSearch = resource.name.toLowerCase().includes(searchTerm.toLowerCase())
+        || (resource.description && resource.description.toLowerCase().includes(searchTerm.toLowerCase()))
+        || (resource.category && resource.category.toLowerCase().includes(searchTerm.toLowerCase()))
       return matchesSearch
     })
+  }, [searchTerm])
 
-    return filtered.reduce(
-      (acc, tool) => {
-        const isMatched = tool.applicableSites?.some(site => url.includes(site)) || false
-        if (isMatched) {
-          acc.matchedTools.push(tool)
-        }
-        else {
-          acc.unmatchedTools.push(tool)
-        }
-        return acc
-      },
-      { matchedTools: [], unmatchedTools: [] } as { matchedTools: Tool[], unmatchedTools: Tool[] },
-    )
-  }, [searchTerm, url])
+  const groupedResources = useMemo(() => {
+    return filteredResources.reduce((acc, resource) => {
+      const category = resource.category || 'Other'
+      if (!acc[category]) {
+        acc[category] = []
+      }
+      acc[category].push(resource)
+      return acc
+    }, {} as Record<string, Resource[]>)
+  }, [filteredResources])
 
+  // ...rest of the component remains similar, just update the rendering part:
   return (
     <Card className="flex h-[600px] w-[800px] flex-col overflow-hidden rounded-none">
       <CardHeader className="pb-3">
@@ -201,7 +202,7 @@ function Popup() {
           <Input
             className="pl-8 transition-all focus-visible:ring-2 focus-visible:ring-blue-500"
             onChange={e => setSearchTerm(e.target.value)}
-            placeholder="Search tools..."
+            placeholder="Search documentation..."
             type="text"
             value={searchTerm}
           />
@@ -210,34 +211,22 @@ function Popup() {
       <CardContent className="flex-1 pb-4">
         <ScrollArea className="h-[400px]">
           <div className="space-y-6 p-4">
-            {matchedTools.length > 0 && (
-              <div>
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">Matched Tools</h3>
+            {Object.entries(groupedResources).map(([category, items]) => (
+              <div key={category}>
+                <h3 className="mb-3 text-lg font-semibold text-gray-900">{category}</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  {matchedTools.map(tool => (
-                    <ToolItem key={tool.name} tool={tool} />
+                  {items.map(resource => (
+                    <ResourceItem key={resource.name} resource={resource} />
                   ))}
                 </div>
               </div>
-            )}
-            {unmatchedTools.length > 0 && (
-              <div>
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
-                  {matchedTools.length > 0 ? 'Other Tools' : 'All Tools'}
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {unmatchedTools.map(tool => (
-                    <ToolItem key={tool.name} tool={tool} />
-                  ))}
-                </div>
-              </div>
-            )}
+            ))}
           </div>
         </ScrollArea>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button
-          onClick={() => window.open('https://github.com/mefengl/unextension/issues/new', '_blank')}
+          onClick={() => window.open('https://github.com/mefengl/memcode/issues/new', '_blank')}
           variant="outline"
         >
           <SiGithub className="mr-2 size-4" />
@@ -266,14 +255,17 @@ function Popup() {
                 <div className="mb-4 text-xs text-gray-500">
                   Credits:
                   <br />
-                  Logo based on `mage:inbox-star-fill` from
+                  Logo from
                   {' '}
-                  <a className="underline" href="https://github.com/Mage-Icons/mage-icons" rel="noopener noreferrer" target="_blank">Mage Icons</a>
-                  , licensed under the
+                  <a className="underline" href="https://www.figma.com/community/file/968125295144990435" rel="noopener noreferrer" target="_blank">Fun Emoji Set</a>
                   {' '}
-                  <a className="underline" href="https://www.apache.org/licenses/LICENSE-2.0" rel="noopener noreferrer" target="_blank">Apache 2.0</a>
+                  by
                   {' '}
-                  license.
+                  <a className="underline" href="https://www.instagram.com/davedirect3/" rel="noopener noreferrer" target="_blank">Davis Uche</a>
+                  , licensed under
+                  {' '}
+                  <a className="underline" href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer" target="_blank">CC BY 4.0</a>
+                  .
                 </div>
               </DialogDescription>
             </DialogHeader>
