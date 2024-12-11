@@ -139,14 +139,31 @@ function ResourceItem({ resource }: { resource: Resource }) {
   )
 }
 
+function extractDomain(url: string): string {
+  try {
+    const domain = new URL(url).hostname.replace('www.', '')
+    return domain
+  }
+  catch {
+    return url
+  }
+}
+
 function Popup() {
   const [searchTerm, setSearchTerm] = useState<string>('')
 
   const filteredResources = useMemo(() => {
+    if (!searchTerm)
+      return resources
+
+    const searchTermLower = searchTerm.toLowerCase()
     return resources.filter((resource) => {
-      const matchesSearch = resource.name.toLowerCase().includes(searchTerm.toLowerCase())
-        || (resource.category && resource.category.toLowerCase().includes(searchTerm.toLowerCase()))
-      return matchesSearch
+      return (
+        resource.name.toLowerCase().includes(searchTermLower)
+        || resource.url.toLowerCase().includes(searchTermLower)
+        || resource.category?.toLowerCase().includes(searchTermLower)
+        || extractDomain(resource.url).toLowerCase().includes(searchTermLower)
+      )
     })
   }, [searchTerm])
 
