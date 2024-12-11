@@ -1,9 +1,8 @@
 {
-  "name": "memcode",
+  "name": "devdocs-finder",
   "type": "module",
   "version": "3.3.3",
   "private": true,
-  "description": "No need to install extensions for every small task when a web app can do it too.",
   "scripts": {
     "dev": "wxt",
     "dev:firefox": "wxt -b firefox",
