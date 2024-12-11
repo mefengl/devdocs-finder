@@ -210,7 +210,7 @@ function Popup() {
 
       <div className="flex justify-between border-t px-3 py-2">
         <Button
-          onClick={() => window.open('https://github.com/mefengl/memcode/issues/new', '_blank')}
+          onClick={() => window.open('https://github.com/mefengl/devdocs-finder/issues/new', '_blank')}
           size="sm"
           variant="outline"
         >
