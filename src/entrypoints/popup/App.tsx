@@ -239,15 +239,15 @@ function Popup() {
                   <br />
                   Logo from
                   {' '}
-                  <a className="underline" href="https://www.figma.com/community/file/968125295144990435" rel="noopener noreferrer" target="_blank">Fun Emoji Set</a>
+                  <a className="underline" href="https://heyzoish.gumroad.com/l/notionists" rel="noopener noreferrer" target="_blank">Notionists</a>
                   {' '}
                   by
                   {' '}
-                  <a className="underline" href="https://www.instagram.com/davedirect3/" rel="noopener noreferrer" target="_blank">Davis Uche</a>
+                  <a className="underline" href="https://bio.link/heyzoish" rel="noopener noreferrer" target="_blank">Zoish</a>
                   , licensed under
                   {' '}
-                  <a className="underline" href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer" target="_blank">CC BY 4.0</a>
-                  .
+                  <a className="underline" href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener noreferrer" target="_blank">CC0 1.0</a>
+                  . Remix of the original.
                 </div>
               </DialogDescription>
             </DialogHeader>
