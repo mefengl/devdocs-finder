@@ -86,7 +86,7 @@ const resources: Resource[] = [
   },
   {
     category: 'Libraries',
-    name: 'oFetch',
+    name: 'ofetch',
     url: 'https://github.com/unjs/ofetch/blob/main/README.md',
   },
 
