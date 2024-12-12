@@ -132,9 +132,7 @@ function ResourceItem({ resource }: { resource: Resource }) {
       onClick={() => window.open(resource.url, '_blank')}
     >
       <span className="text-sm text-gray-900">{resource.name}</span>
-      {resource.category && (
-        <span className="text-xs text-gray-500">{resource.category}</span>
-      )}
+      <span className="text-xs text-gray-500">{extractDomain(resource.url)}</span>
     </div>
   )
 }
