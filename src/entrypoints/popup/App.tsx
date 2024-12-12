@@ -32,6 +32,16 @@ const resources: Resource[] = [
   },
   {
     category: 'Frontend',
+    name: 'Photonkit Components',
+    url: 'http://photonkit.com/components/',
+  },
+  {
+    category: 'Frontend',
+    name: 'Photonkit Getting Started',
+    url: 'http://photonkit.com/getting-started/',
+  },
+  {
+    category: 'Frontend',
     name: 'Framer Motion',
     url: 'https://motion.dev/docs/react-quick-start',
   },
@@ -86,7 +96,7 @@ const resources: Resource[] = [
   },
   {
     category: 'Libraries',
-    name: 'ofetch',
+    name: 'oFetch',
     url: 'https://github.com/unjs/ofetch/blob/main/README.md',
   },
 
