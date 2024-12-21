@@ -32,30 +32,15 @@ const resources: Resource[] = [
   },
   {
     category: 'Frontend',
-    name: 'Photonkit Components',
-    url: 'http://photonkit.com/components/',
-  },
-  {
-    category: 'Frontend',
     name: 'Photonkit Getting Started',
     url: 'http://photonkit.com/getting-started/',
-  },
-  {
-    category: 'Frontend',
-    name: 'Framer Motion',
-    url: 'https://motion.dev/docs/react-quick-start',
   },
 
   // Development Tools
   {
     category: 'Development',
-    name: 'WXT',
-    url: 'https://wxt.dev/guide/essentials/entrypoints.html',
-  },
-  {
-    category: 'Development',
-    name: 'WXT Examples',
-    url: 'https://wxt.dev/examples.html',
+    name: 'Electron',
+    url: 'https://www.electronjs.org/docs/latest',
   },
   {
     category: 'Development',
@@ -74,8 +59,8 @@ const resources: Resource[] = [
   },
   {
     category: 'Development',
-    name: 'ElectronJS',
-    url: 'https://www.electronjs.org/docs/latest',
+    name: 'WXT',
+    url: 'https://wxt.dev/guide/essentials/entrypoints.html',
   },
 
   // Libraries & Utils
@@ -101,7 +86,7 @@ const resources: Resource[] = [
   },
   {
     category: 'Libraries',
-    name: 'oFetch',
+    name: 'ofetch',
     url: 'https://github.com/unjs/ofetch/blob/main/README.md',
   },
 ]
