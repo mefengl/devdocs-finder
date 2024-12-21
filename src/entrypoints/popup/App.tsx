@@ -72,6 +72,11 @@ const resources: Resource[] = [
     name: 'Vitest',
     url: 'https://vitest.dev/guide/',
   },
+  {
+    category: 'Development',
+    name: 'ElectronJS',
+    url: 'https://www.electronjs.org/docs/latest',
+  },
 
   // Libraries & Utils
   {
