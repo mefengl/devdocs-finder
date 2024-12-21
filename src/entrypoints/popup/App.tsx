@@ -104,40 +104,6 @@ const resources: Resource[] = [
     name: 'oFetch',
     url: 'https://github.com/unjs/ofetch/blob/main/README.md',
   },
-
-  // Learning Resources
-  {
-    category: 'Learning',
-    name: 'LabulaDong Algo',
-    url: 'https://labuladong.online/algo/intro/data-structure-basic/',
-  },
-  {
-    category: 'Learning',
-    name: 'You Don\'t Know JS',
-    url: 'https://github.com/getify/You-Dont-Know-JS#titles',
-  },
-  {
-    category: 'Learning',
-    name: 'Eloquent JavaScript',
-    url: 'https://eloquentjavascript.net/',
-  },
-
-  // Best Practices
-  {
-    category: 'Best Practices',
-    name: 'Project Guidelines',
-    url: 'https://github.com/elsewhencode/project-guidelines#project-guidelines--',
-  },
-  {
-    category: 'Best Practices',
-    name: '12 Factor App',
-    url: 'https://12factor.net/',
-  },
-  {
-    category: 'Best Practices',
-    name: 'System Design Primer',
-    url: 'https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions',
-  },
 ]
 
 function ResourceItem({ resource }: { resource: Resource }) {
