@@ -1,7 +1,7 @@
 {
   "name": "devdocs-finder",
   "type": "module",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "private": true,
   "scripts": {
     "dev": "wxt",
