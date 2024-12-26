@@ -89,6 +89,11 @@ const resources: Resource[] = [
     name: 'ofetch',
     url: 'https://github.com/unjs/ofetch/blob/main/README.md',
   },
+  {
+    category: 'Libraries',
+    name: 'Better Auth',
+    url: 'https://www.better-auth.com/docs/introduction',
+  },
 ]
 
 function ResourceItem({ resource }: { resource: Resource }) {
