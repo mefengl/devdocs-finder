@@ -66,6 +66,11 @@ const resources: Resource[] = [
   // Libraries & Utils
   {
     category: 'Libraries',
+    name: 'Lucia Auth',
+    url: 'https://lucia-auth.com/',
+  },
+  {
+    category: 'Libraries',
     name: 'Zod',
     url: 'https://zod.dev/?id=basic-usage',
   },
